@@ -1,0 +1,15 @@
+.buttonStyle {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.buttonStyle button {
+  padding: 10px 25px;
+  border-radius: 10px;
+  background-color: bisque;
+  border: none;
+  color: gray;
+  cursor: pointer;
+}

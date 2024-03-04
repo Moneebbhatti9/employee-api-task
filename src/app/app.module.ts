@@ -1,16 +1,37 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppComponent } from './app.component';
+import { AppComponent } from './main/app.component';
+import { EmployeeTableComponent } from './employee-table/employee-table.component';
+import { EmployeeService } from './service/employee.service';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent, EmployeeTableComponent],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule,
+    RouterModule.forRoot([
+      {
+        path: 'employees',
+        component: EmployeeTableComponent,
+      },
+      {
+        path: '',
+        loadChildren: () =>
+          import('./products/products.module').then(
+            (mod: any) => mod.ProductsModule
+          ),
+      },
+      {
+        path: '',
+        loadChildren: () =>
+          import('./post/post.module').then((mod: any) => mod.PostModule),
+      },
+    ]),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
